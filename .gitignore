@@ -1,0 +1,15 @@
+# PHP System
+.idea/
+.vscode/
+*.log
+*.tmp
+*.bak
+
+# OS specific files
+Thumbs.db
+db.db
+desktop.ini
+.DS_Store
+
+# Local application settings
+/config/settings.json
