@@ -240,7 +240,7 @@ try {
                                                     </div>
                                                 <?php endif; ?>
                                                 <div class="mt-4 pt-2 border-top text-end text-muted" style="font-size: 0.8rem;">
-                                                    Assigned Physician: <strong>Dr. <?php echo htmlspecialchars($rec['doctor_name']); ?></strong>
+                                                    Assigned Physician: <strong><?php echo htmlspecialchars($rec['doctor_name']); ?></strong>
                                                 </div>
                                             </div>
                                         </div>
@@ -312,7 +312,7 @@ try {
                                     <tbody>
                                         <?php foreach ($appointment_history as $appt): ?>
                                             <tr>
-                                                <td><strong>Dr. <?php echo htmlspecialchars($appt['doctor_name']); ?></strong></td>
+                                                <td><strong><?php echo htmlspecialchars($appt['doctor_name']); ?></strong></td>
                                                 <td><?php echo date('M d, Y h:i A', strtotime($appt['appointment_date'])); ?></td>
                                                 <td>
                                                     <span class="badge badge-role status-<?php echo strtolower($appt['status']); ?>">

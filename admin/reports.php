@@ -145,7 +145,7 @@ try {
                                     <td><strong><?php echo htmlspecialchars($rec['diagnosis']); ?></strong></td>
                                     <td><small><?php echo htmlspecialchars($rec['treatment']); ?></small></td>
                                     <td><small class="text-danger fw-bold"><i class="fas fa-prescription me-1"></i> <?php echo htmlspecialchars($rec['prescription']); ?></small></td>
-                                    <td><small><i class="fas fa-user-md text-muted me-1"></i> Dr. <?php echo htmlspecialchars($rec['doctor_name']); ?></small></td>
+                                    <td><small><i class="fas fa-user-md text-muted me-1"></i> <?php echo htmlspecialchars($rec['doctor_name']); ?></small></td>
                                 </tr>
                             <?php endforeach; ?>
                         </tbody>
@@ -172,7 +172,7 @@ try {
                                 <tr>
                                     <td><code><?php echo htmlspecialchars($appt['patient_number']); ?></code></td>
                                     <td><strong><?php echo htmlspecialchars($appt['patient_name']); ?></strong></td>
-                                    <td>Dr. <?php echo htmlspecialchars($appt['doctor_name']); ?></td>
+                                    <td><?php echo htmlspecialchars($appt['doctor_name']); ?></td>
                                     <td><i class="far fa-clock text-muted me-1"></i> <?php echo date('M d, Y h:i A', strtotime($appt['appointment_date'])); ?></td>
                                     <td>
                                         <span class="badge badge-role status-<?php echo strtolower($appt['status']); ?>">

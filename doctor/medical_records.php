@@ -5,15 +5,19 @@ $page_title = 'Clinical Notes Directory';
 require_once __DIR__ . '/../includes/header.php';
 require_once __DIR__ . '/../config/database.php';
 
+$doctor_id = $_SESSION['user_id'];
 try {
-    // Fetch all medical records along with patient and doctor details
-    $medical_records = $pdo->query("
+    // Fetch only medical records logged by the active doctor
+    $stmt = $pdo->prepare("
         SELECT mr.*, p.full_name as patient_name, p.patient_number, u.full_name as doctor_name 
         FROM medical_records mr
         JOIN patients p ON mr.patient_id = p.patient_id
         JOIN users u ON mr.doctor_id = u.user_id
+        WHERE mr.doctor_id = ?
         ORDER BY mr.created_at DESC
-    ")->fetchAll();
+    ");
+    $stmt->execute([$doctor_id]);
+    $medical_records = $stmt->fetchAll();
 } catch (PDOException $e) {
     $_SESSION['error_message'] = "Error loading medical entries: " . $e->getMessage();
     $medical_records = [];
@@ -72,7 +76,7 @@ try {
                                     </div>
                                 </td>
                                 <td>
-                                    <small><i class="fas fa-user-md text-muted me-1"></i> Dr. <?php echo htmlspecialchars($rec['doctor_name']); ?></small>
+                                    <small><i class="fas fa-user-md text-muted me-1"></i> <?php echo htmlspecialchars($rec['doctor_name']); ?></small>
                                 </td>
                                 <td class="text-end">
                                     <a href="patient_profile.php?id=<?php echo $rec['patient_id']; ?>" class="btn btn-sm btn-outline-primary py-2 px-3" style="font-size: 0.75rem; border-radius: 6px;">
