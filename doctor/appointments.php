@@ -116,10 +116,8 @@ try {
                                             Change Status
                                         </button>
                                         <ul class="dropdown-menu dropdown-menu-end shadow-sm" style="font-size: 0.85rem; border-color: var(--card-border);">
-                                            <li><a class="dropdown-item" href="appointments.php?action=Confirmed&id=<?php echo $appt['appointment_id']; ?>"><i class="fas fa-check text-info me-2"></i> Confirm</a></li>
                                             <li><a class="dropdown-item" href="appointments.php?action=Completed&id=<?php echo $appt['appointment_id']; ?>"><i class="fas fa-check-double text-success me-2"></i> Mark Completed</a></li>
                                             <li><a class="dropdown-item text-danger" href="appointments.php?action=Cancelled&id=<?php echo $appt['appointment_id']; ?>"><i class="fas fa-times-circle me-2"></i> Cancel</a></li>
-                                            <li><a class="dropdown-item" href="appointments.php?action=Pending&id=<?php echo $appt['appointment_id']; ?>"><i class="fas fa-history text-muted me-2"></i> Set Pending</a></li>
                                         </ul>
                                     </div>
                                 </td>

@@ -1,5 +1,6 @@
 <?php
 // includes/header.php
+ob_start();
 
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
@@ -110,10 +111,9 @@ $system_name = isset($_SESSION['system_name']) ? $_SESSION['system_name'] : 'Med
                         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                     </div>
                 <?php endif; ?>
-                
-                <?php if (isset($_SESSION['error_message'])): ?>
+                                <?php if (isset($_SESSION['error_message'])): ?>
                     <div class="alert alert-danger alert-dismissible fade show" role="alert" style="border-radius: 8px; font-weight: 500;">
-                        <i class="fas fa-exclamation-triangle me-2"></i> <?php echo htmlspecialchars($_SESSION['error_message']); ?>
+                        <i class="fas fa-exclamation-triangle me-2"></i> <?php echo $_SESSION['error_message']; ?>
                         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                     </div>
                     <?php unset($_SESSION['error_message']); ?>
@@ -121,7 +121,7 @@ $system_name = isset($_SESSION['system_name']) ? $_SESSION['system_name'] : 'Med
                 
                 <?php if (isset($_SESSION['success_message'])): ?>
                     <div class="alert alert-success alert-dismissible fade show" role="alert" style="border-radius: 8px; font-weight: 500;">
-                        <i class="fas fa-check-circle me-2"></i> <?php echo htmlspecialchars($_SESSION['success_message']); ?>
+                        <i class="fas fa-check-circle me-2"></i> <?php echo $_SESSION['success_message']; ?>
                         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                     </div>
                     <?php unset($_SESSION['success_message']); ?>
