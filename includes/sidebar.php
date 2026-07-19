@@ -108,9 +108,34 @@ $path_to_root = isset($path_to_root) ? $path_to_root : '../';
 
         <?php elseif ($role === 'receptionist'): ?>
             <!-- Receptionist Navigation Links -->
+            <?php
+            if (!isset($pdo)) {
+                require_once __DIR__ . '/../config/database.php';
+            }
+            try {
+                $today_date = date('Y-m-d');
+                $side_stmt = $pdo->prepare("
+                    SELECT COUNT(*) 
+                    FROM medical_records mr
+                    WHERE DATE(mr.created_at) = ?
+                      AND (
+                          SELECT status FROM appointments 
+                          WHERE patient_id = mr.patient_id AND doctor_id = mr.doctor_id 
+                          ORDER BY appointment_date DESC LIMIT 1
+                      ) = 'Completed'
+                ");
+                $side_stmt->execute([$today_date]);
+                $side_completed_count = $side_stmt->fetchColumn();
+            } catch (Exception $e) {
+                $side_completed_count = 0;
+            }
+            ?>
             <li class="<?php echo ($current_page === 'dashboard.php') ? 'active' : ''; ?>">
-                <a href="<?php echo $path_to_root; ?>receptionist/dashboard.php">
-                    <i class="fas fa-laptop-medical"></i> Dashboard
+                <a href="<?php echo $path_to_root; ?>receptionist/dashboard.php" class="d-flex align-items-center justify-content-between">
+                    <span><i class="fas fa-laptop-medical"></i> Dashboard</span>
+                    <?php if ($side_completed_count > 0): ?>
+                        <span class="badge bg-danger rounded-pill" style="font-size: 0.7rem; padding: 0.25rem 0.5rem; margin-right: 10px;"><?php echo $side_completed_count; ?></span>
+                    <?php endif; ?>
                 </a>
             </li>
             <li class="<?php echo ($current_page === 'register.php') ? 'active' : ''; ?>">

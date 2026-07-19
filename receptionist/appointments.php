@@ -40,7 +40,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['book_appointment'])) 
 if (isset($_GET['action']) && isset($_GET['id'])) {
     $appt_id = intval($_GET['id']);
     $action = $_GET['action'];
-    $allowed_statuses = ['Pending', 'Confirmed', 'Completed', 'Cancelled'];
+    $allowed_statuses = ['Pending', 'Confirmed', 'Completed', 'Cancelled', 'Discharged'];
     
     if (in_array($action, $allowed_statuses)) {
         try {
@@ -137,7 +137,7 @@ try {
                                 </td>
                                 <td class="text-end">
                                     <div class="dropdown d-inline-block">
-                                        <button class="btn btn-sm btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" style="border-radius: 6px; font-size: 0.75rem;">
+                                        <button class="btn btn-sm btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" data-bs-boundary="viewport" aria-expanded="false" style="border-radius: 6px; font-size: 0.75rem;">
                                             Change Status
                                         </button>
                                         <ul class="dropdown-menu dropdown-menu-end shadow-sm" style="font-size: 0.85rem; border-color: var(--card-border);">

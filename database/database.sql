@@ -50,7 +50,7 @@ CREATE TABLE IF NOT EXISTS appointments (
     patient_id INT NOT NULL,
     doctor_id INT NOT NULL,
     appointment_date DATETIME NOT NULL,
-    status ENUM('Pending', 'Confirmed', 'Completed', 'Cancelled') DEFAULT 'Pending',
+    status ENUM('Pending', 'Confirmed', 'Completed', 'Cancelled', 'Discharged') DEFAULT 'Pending',
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (patient_id) REFERENCES patients(patient_id) ON DELETE CASCADE,
     FOREIGN KEY (doctor_id) REFERENCES users(user_id) ON DELETE RESTRICT
